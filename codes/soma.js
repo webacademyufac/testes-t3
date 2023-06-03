@@ -1,4 +1,4 @@
-
+// export functio...
 function soma(variavel){
     if((typeof(variavel.x)=="number") &&
     (typeof(variavel.y)=="number"))
