@@ -12,3 +12,8 @@ https://github.com/igormaia01/citei-backend
 
 ## Link para o material complementar da aula do dia 07/06/2023
 https://uttermost-room-27d.notion.site/Academia-Rede-40b0d6a706d549dfa432ea08d6b242bb
+
+## Tarefas
+-> Comentar os códigos de testes no back-end e front-end (somente os códigos dos documentos de testes);
+-> Resolver os comentários no teste E2E com o cypress no front-end;
+-> Subir toda sua documentação para sua pasta, dentro de codes\students.
