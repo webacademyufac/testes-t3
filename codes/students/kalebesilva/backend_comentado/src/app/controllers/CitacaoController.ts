@@ -102,44 +102,65 @@ class CitacaoController {
     try { 
       const result = validationResult(request); /*Essa é um tipo de requisição que necessita de tratamento de dados
       pois tais dados podem danificar nosso banco de dados, então por conta disso, precisamos validar ela.*/
-      if (!result.isEmpty()) {
+      if (!result.isEmpty()) { /*Após pedimos para o método validationResult validar a requisicao, iremos ver se ele retornou
+      algo diferente de vazio, se sim, então a requisicao nao está do jeito que nossa aplicacao espera, então retornarmos
+      um erro 400. */
         return response.status(400).json({ errors: result.array() });
       }
-      const citacao = request.body as CitacaoInterface;
-      const newCitacao = await this.citacaoService.create(citacao);
+      const citacao = request.body as CitacaoInterface; /*Caso esteja tudo bem com nossa requisicao, nos iremos criar um
+      corpo par a citacao */
+      const newCitacao = await this.citacaoService.create(citacao); /*Agora que temos um corpo criado, iremos solicitar
+      ao service que solicite que seja criado um novo registro no banco de dados, usando como parametro a nossa citacao
+      e por fim, iremos atribuir isso a uma nova constante que por fim retornaremos ao front-end usando o padrão json */
       return response.json(newCitacao);
-    } catch (error) {
+    } catch (error) { // Caso ocorra algum erro e o try não dê certo, iremos informar que ouve um erro com o catch
       errorHandler(error, request, response, null);
     }
   }
 
-  async update(request: Request, response: Response): Promise<Response> {
+  async update(request: Request, response: Response): Promise<Response> {/*Esse método é referente ao update de uma tabela
+  já existente, ele se assemelha bastante com o create, mas sua proposta é diferente, enquanto o create busca criar um
+  novo registro, ele atualizara um registro já existente */
     try {
-      const result = validationResult(request);
+      const result = validationResult(request);/*Primeiramente precisamos verificar se a solicitacao está de acordo com o
+      que esperamos receber e caso ela não esteja, a variável result receberar algo diferente de vazio, dessa forma entrando
+      nas condicoes da nossa verificacao, resultando no retorno de error 400 + detalhes sobre o que aconteceu. */
       if (!result.isEmpty()) {
         return response.status(400).json({ errors: result.array() });
       }
-      const { id } = request.params;
-      const citacao = request.body as CitacaoInterface;
+      const { id } = request.params; /*Para nós sabermos qual campo devemos atualizar, precisaremos saber o id do registro,
+      nesse caso, do registro em que queremos alterar, para isso iremos capturar o id da requisicao. */
+      const citacao = request.body as CitacaoInterface; // Assim como no método anterior, iremos preparar o o corpo da 
+      //requisicao e salvar em uma constante. Essa constante irá servir como parametro da nossa solicitacao de update ao
+      //service.
       const updatedCitacao = await this.citacaoService.update(
         Number(id),
         citacao
-      );
+      ); /*Agora é onde iremos realizar a solicitacao de fato, aqui iremos usar a ID capturada, assim como os dados que
+      buscamos modificar, após recebermos a resposta do service, iremos guarda-la em uma constante chamada updateCitacao
+      e por fim, retornaremos a  resposta no padrao json. */ 
       return response.json(updatedCitacao);
-    } catch (error) {
+    } catch (error) { // Caso o try não consiga executar por algum motivo, ele mostar um erro.
       errorHandler(error, request, response, null);
     }
   }
 
-  async delete(request: Request, response: Response): Promise<Response> {
+  async delete(request: Request, response: Response): Promise<Response> { /*O método delete, como o proprio nome sugere
+  iremos apagar algum registro do banco de dados, nesse caso, solicitar ao service que esse registro seja apagado,
+  para isso iremos precisar capturar a id que está represente na requisicao, pois não queremos apagar todos os registros
+  do banco de dados e sim apenas o registro que solicitamos. */
     try {
       const { id } = request.params;
-      await this.citacaoService.delete(Number(id));
+      await this.citacaoService.delete(Number(id)); /** Ao contrario das outras solicitacoes, essa não irá retornar nenhum
+      body, por isso nós não precisamos guarda-la em uma constante, como tinhamos feito anteiormente, mas precisamo dizer
+      ao frontend ou usuário (depende), se o registro em questão foi removido ou não, então iremos retornar uma mensagem
+      informando que o registro foi removido com sucesso */
       return response.json({ message: 'Citacao removida com sucesso!' });
-    } catch (error) {
+    } catch (error) { 
       errorHandler(error, request, response, null);
     }
   }
 }
 
-export default new CitacaoController();
+export default new CitacaoController(); /* Por fim, iremos exportar essa classe para que ela possa ser acessada em outras
+partes da nossa aplicacao. */ 
