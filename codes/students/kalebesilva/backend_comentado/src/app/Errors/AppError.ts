@@ -1,4 +1,4 @@
-export enum HttpCode {
+export enum HttpCode { // Enum contendo a pilha de erros a ser retornada
   BAD_REQUEST = 400,
   UNAUTHORIZED = 401,
   FORBIDDEN = 403,
