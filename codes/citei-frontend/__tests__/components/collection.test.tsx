@@ -6,24 +6,34 @@ import Collection from '../../src/components/collection';
 import { collection } from '../factory/collection';
 import { ImageURL } from '../../src/entities/url';
 
-describe('<Collection>', () => {
-  describe('Deve exibir uma coleção corretamente quando as informações passadas forem válidas', () => {
-    it('Deve exibir o título da coleção quando ele for passado na prop "title"', () => {
-      const title = faker.word.words(2);
-      render(<Collection collection={collection({ title })} />);
 
+// Descreve o conjunto de testes para o componente <Collection>
+describe('<Collection>', () => {
+  // Descreve o conjunto de testes para a exibição correta da coleção
+  describe('Deve exibir uma coleção corretamente quando as informações passadas forem válidas', () => {
+    // Teste: Verifica se o título da coleção é exibido corretamente quando passado na prop "title"
+    it('Deve exibir o título da coleção quando ele for passado na prop "title"', () => {
+      // Gera um título aleatório usando a biblioteca faker
+      const title = faker.word.words(2);
+      // Renderiza o componente Collection com a coleção contendo o título gerado
+      render(<Collection collection={collection({ title })} />);
+      
+    // Verifica se o título está presente no documento (document)
       expect(screen.getByText(title)).toBeInTheDocument();
     });
-
+    // Teste: Verifica se o subtítulo da coleção é exibido corretamente quando passado na prop "subtitle"
     it('Deve exibir o subtítulo da coleção quando ele for passado na prop "subtitle"', () => {
+      // Gera um subtítulo aleatório usando a biblioteca faker
       const subtitle = faker.word.words(7);
+      // Renderiza o componente Collection com a coleção contendo o subtítulo gerado
       render(<Collection collection={collection({ subtitle })} />);
-
+      // Verifica se o subtítulo está presente no documento (document)
       expect(screen.getByText(subtitle)).toBeInTheDocument();
     });
 
     it('Deve exibir o nome do autor da coleção quando ele for passado na prop "author"', () => {
       const author = faker.person.fullName();
+
       render(<Collection collection={collection({ author })} />);
 
       expect(screen.getByText(author)).toBeInTheDocument();
