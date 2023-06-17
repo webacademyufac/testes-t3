@@ -1,7 +1,7 @@
 import ColecaoEntity from "../../../app/entities/ColecaoEntity";
 import ColecaoInterface from "../../../app/interfaces/entities/ColecaoInterface";
 
-export const OneColecaoFixture: ColecaoEntity = {
+export const OneColecaoFixture: ColecaoEntity = { // um obj de colecao
   id: 1,
   titulo: 'titulo',
   subtitulo: 'subtitulo',
@@ -9,7 +9,7 @@ export const OneColecaoFixture: ColecaoEntity = {
   imagem: 'imagem',
 }
 
-export const ManyColecaoFixture: ColecaoEntity[] = [
+export const ManyColecaoFixture: ColecaoEntity[] = [ // array de objetos de colecao
   {
     id: 1,
     titulo: 'titulo',
@@ -26,14 +26,14 @@ export const ManyColecaoFixture: ColecaoEntity[] = [
   },
 ]
 
-export const ColecaoInterfaceFixture: ColecaoInterface = {
+export const ColecaoInterfaceFixture: ColecaoInterface = { // obj sem id
   titulo: 'titulo',
   autor: 'autor',
   imagem: 'imagem',
   subtitulo: 'subtitulo',
 }
 
-export const CreatedColecaoFixture: ColecaoEntity = {
+export const CreatedColecaoFixture: ColecaoEntity = { // Obj fora de ordem
   id: 1,
   titulo: 'titulo',
   subtitulo: 'subtitulo',
