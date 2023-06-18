@@ -7,7 +7,7 @@ export enum HttpCode { // Enum contendo a pilha de erros a ser retornada
   INTERNAL_SERVER_ERROR = 500,
 }
 
-interface AppErrorArgs {
+interface AppErrorArgs { 
   name?: string;
   httpCode: HttpCode;
   description: string;
