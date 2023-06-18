@@ -1,6 +1,9 @@
 import { faker } from '@faker-js/faker';
 import { ImageURL } from '../../src/entities/url';
 
+//O teste garante que a entidade URL está se comportando corretamente e considerando corretamente se uma URL criada é válida ou não, além de retornar corretamente a URL padrão em caso de URL inválida
+//O teste aqui verifica se a URL é válida ou não e se a URL padrão é retornada corretamente caso uma URL inválida seja passada
+
 describe('entities/url', () => {
   describe('isValid', () => {
     it('Deve retornar true quando uma URL válida for enviada', () => {

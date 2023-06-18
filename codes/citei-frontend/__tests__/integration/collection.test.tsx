@@ -6,6 +6,10 @@ import Collection from '../../src/containers/collection';
 import { collection } from '../../__tests__/factory/collection';
 import { collectionService as collectionServiceFactory } from '../../__tests__/factory/collectionService';
 
+//Esse é um teste automatizado escrito em Jest para o componente Collection 
+//Ele testa comportamentos e funções do componente, utilizando mocks e simulações para injetar serviços e dados ao componente
+//
+
 beforeAll(() => {
   jest.spyOn(window, 'alert').mockImplementation(() => { });
 });

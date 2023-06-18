@@ -4,6 +4,9 @@ import { faker } from '@faker-js/faker';
 import QuotationList from '../../src/components/quotationList'; // implement quotation
 import { quotation } from '../factory/quotation';
 
+//O teste garante que o componente QuotationList está se comportando corretamente ao receber uma lista de citações para exibir na tela, 
+//validando a renderização de cada item corretamente
+
 describe('<QuotationList>', () => {
   describe('Deve renderizar o componente corretamente quando uma lista de citações for passada via prop', () => {
     it('Deve exibir o texto das citações quando uma lista de quotation for enviada via prop "quotations"', () => {

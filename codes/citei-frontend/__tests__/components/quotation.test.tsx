@@ -4,6 +4,9 @@ import userEvent from '@testing-library/user-event';
 import { faker } from '@faker-js/faker';
 import Quotation from '../../src/components/quotation'; // implement quotation
 
+//O teste garante que o componente Quotation está se comportando corretamente em diferentes situações ao exibir ou não informações,
+//Bem como em relação à funcionalidade de copiar ou compartilhar a citação apropriadamente
+
 describe('<Quotation>', () => {
   describe('Deve deixar de exibir as informações quando elas não forem passadas para o componente', () => {
     it('Deve deixar de renderizar o parágrafo da citação quando nada for passado no atributo "quote"', () => {

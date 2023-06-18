@@ -4,6 +4,8 @@ import userEvent from '@testing-library/user-event';
 import { faker } from '@faker-js/faker';
 import Search from '../../src/components/search';
 
+//O teste garante que o componente Search está se comportando corretamente em diferentes cenários e verificando adequadamente as funções envolvidas em cada evento ocorrido
+
 describe('<Search />', () => {
   describe('Deve exibir o componente de busca corretamente quando ele for renderizado', () => {
     it('Deve exibir um input text editável quando o icone de busca for clicado', async () => {

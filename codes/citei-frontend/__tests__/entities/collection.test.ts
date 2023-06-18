@@ -3,6 +3,9 @@ import { faker } from '@faker-js/faker';
 import { ICollection } from '../../src/interfaces/collection';
 import { ImageURL } from '../../src/entities/url';
 
+//Esse arquivo de teste garante que a entidade Collection está se comportando corretamente e considerando corretamente se uma instância da coleção criada é válida ou não
+//O teste aqui verifica se a instância da coleção é válida, de acordo com os critérios estabelecidos na definição da classe
+
 describe('entities/collection', () => {
   describe('Deve retornar false quando uma coleção for instanciada com algum valor invalido', () => {
     it('Deve retornar false quando uma coleção for criada com o Título vazio', () => {

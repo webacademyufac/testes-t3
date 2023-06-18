@@ -1,3 +1,6 @@
+//Esta parte do código está importando dependências necessárias para realizar testes na funcionalidade de renderização do componente Collection
+//O faker é uma biblioteca que gera dados falsos para ajudar nos testes, a coleção é um objeto de exemplo gerado para uso nos testes
+
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -5,6 +8,11 @@ import { faker } from '@faker-js/faker';
 import Collection from '../../src/components/collection';
 import { collection } from '../factory/collection';
 import { ImageURL } from '../../src/entities/url';
+
+//É um conjunto de testes para o componente Collection utilizando a React Testing Library, cada teste está descrito com uma string representando o comportamento que ele deve testar
+//Na primeira descrição de testes, o objetivo é testar se o componente Collection está exibindo corretamente as informações passadas para ele como propriedades
+//Na segunda descrição, os testes visam verificar se o componente está realizando corretamente as ações do usuário, como clicar nos botões de editar e excluir
+//Os testes servem para garantir que o componente Collection está funcionando corretamente e se comportando conforme o esperado em diferentes circunstâncias
 
 describe('<Collection>', () => {
   describe('Deve exibir uma coleção corretamente quando as informações passadas forem válidas', () => {

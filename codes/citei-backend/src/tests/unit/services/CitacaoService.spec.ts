@@ -1,28 +1,40 @@
+//Essas importações são parte do contexto do serviço de citações e das dependências relacionadas a ele
+
 import { AppError } from "../../../app/Errors/AppError";
 import { CitacaoRepositoryInterface } from "../../../app/interfaces/repositories/CitacaoRepositoryInterface";
 import { ColecaoRepositoryInterface } from "../../../app/interfaces/repositories/ColecaoRepositoryInterface";
 import CitacaoService from "../../../app/services/CitacaoService";
 import { OneCitacaoFixture, OneCitacaoOnlyFixture, manyCitacoesFixture, newCitacaoFixture } from "../../config/fixtures/CitacaoFixtures";
 import { CitacaoRepositoryMock } from "../../config/mocks/CitacaoRepositoryMock";
-import { ColecaoRepositoryMock } from "../../config/mocks/ColecaoRepositoryMock";
+import { ColecaoRepositoryMock } from "../../config/mocks/ColecaoRepositoryMock";    
 
+//Essas variáveis serão utilizadas nos testes para acessar e interagir com o serviço de citações e seus repositórios correspondentes
 
-describe('CitacaoService', () => {
+describe('CitacaoService', () => {                  
   let citacaoService: CitacaoService;
   let citacaoRepositoryMock: CitacaoRepositoryInterface;
   let colecaoRepositoryMock: ColecaoRepositoryInterface;
 
-  beforeEach(() => {
-    citacaoRepositoryMock = CitacaoRepositoryMock();
-    colecaoRepositoryMock = ColecaoRepositoryMock();
+  //Este trecho define um bloco de testes para o serviço de citações CitacaoService
+  // antes de cada teste, os repositórios de citações e coleções simulados são inicializados e passados para o serviço de citações 
+  //garantindo que cada teste seja executado em um ambiente controlado e isolado
+
+  beforeEach(() => {                                          
+    citacaoRepositoryMock = CitacaoRepositoryMock();          
+    colecaoRepositoryMock = ColecaoRepositoryMock();          
     citacaoService = new CitacaoService(citacaoRepositoryMock, colecaoRepositoryMock);
   });
 
-  afterEach(() => {
-    jest.resetAllMocks();
+// Essa função do Jest é usada para redefinir todos os mocks que foram criados durante os testes Isso garante que o estado dos mocks seja limpo
+//Isso garante que o estado dos mocks seja limpo
+
+  afterEach(() => {          
+    jest.resetAllMocks();    
   });
 
-  describe('findAll', () => {
+  //Esse teste assegura que o método findAll do serviço de citações está retornando corretamente todos os objetos de citação e se está fazendo a chamada adequada ao repositório de citações
+
+  describe('findAll', () => {                                    
     it('should return all CitacaoEntity objects', async () => {
       const result = await citacaoService.findAll();
 
@@ -30,6 +42,10 @@ describe('CitacaoService', () => {
       expect(citacaoRepositoryMock.findAll).toHaveBeenCalled();
     });
 
+    //Essa parte do código define testes para o serviço de citações CitacaoService, cada teste verifica o comportamento de um método específico do serviço
+    //Os testes verificam se os métodos estão sendo chamados corretamente, se estão passando os parâmetros corretos para os repositórios simulados CitacaoRepositoryMock e ColecaoRepositoryMock
+    //Esses testes garantem a correta funcionalidade do serviço de citações, garantindo que ele esteja interagindo corretamente com os repositórios e fornecendo os resultados esperados
+    
     it('should send params to CitacaoRepository', async () => {
       const titulo = 'Citacao';
       const result = await citacaoService.findAll(titulo);

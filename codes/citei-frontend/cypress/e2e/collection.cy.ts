@@ -18,22 +18,30 @@ describe('e2e/collection', () => {
 
   describe('Deve exibir corretamente o modal de cadastrar coleção', () => {
     it('Deve exibir a coleção que foi adicionada pelo usuário através do modal de adicionar coleção', () => {
-      // Utilize a factory de coleção para gerar os dados de uma nova coleção
-      // Utilize o faker para gerar uma url de imagem valida
-      // Acesse a URL da aplicação
-      // Faça o modal de criar coleção aparecer na tela
-
-      cy.get('input[placeholder="Título da coleção"]').type('TROQUE-PELOS-DADOS-DA-FACTORY');
-      // Complete com os dados dos outros campos
-      // Não esqueça de clicar no botão com o texto de salvar
-
-      cy.get('footer').contains('Rodapé').scrollIntoView();
-      // Talvez seja interessante procurar na documentação do cypress uma maneira de ESPERAR algum tempo
-      // até que a tela realmente termine a requisição
-
-      // Aqui você deve fazer o assert, o h3 deve estar visível com o texto da nova coleção
+      const newCollection = collection(); 
+      const imageUrl = faker.image.imageUrl(); 
+      cy.visit('http://localhost:8080'); 
+      cy.contains('Adicionar coleção').click(); 
+  
+      cy.get('input[placeholder="Título da coleção"]').type(newCollection.name); 
+      cy.get('input[placeholder="Descrição"]').type(newCollection.description); 
+      cy.get('input[placeholder="URL da imagem"]').type(imageUrl); 
+      cy.contains('Salvar').click(); 
+  
+      cy.get('h3').contains(newCollection.name).should('be.visible'); 
     });
   });
+
+      cy.get('input[placeholder="Título da coleção"]').type(newCollection.name);
+      cy.get('input[placeholder="Descrição"]').type(newCollection.description);
+      cy.get('input[placeholder="URL da imagem"]').type(imageUrl);
+      cy.contains('Salvar').click();
+
+      cy.get('footer').contains('Rodapé').scrollIntoView();
+      cy.get('footer').contains('Rodapé').scrollIntoView();
+      cy.wait(2000); 
+      cy.get('h3').contains(newCollection.title).should('be.visible');
+    });
 
   describe('Deve filtrar as coleções corretamente', () => {
     it('Deve exibir a coleção cujo título foi digitado no campo de buscar', async() => {
@@ -49,7 +57,7 @@ describe('e2e/collection', () => {
       });
     });
   });
-})
+
 
 // Prevent TypeScript from reading file as legacy script
 export {}

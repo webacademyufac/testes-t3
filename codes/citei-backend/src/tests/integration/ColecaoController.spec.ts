@@ -1,11 +1,15 @@
+//estão sendo importados alguns módulos e classes
+
 import request, { SuperTest, Test } from 'supertest';
 import express, { Express } from 'express';
 import cors from 'cors';
-import ColecaoController from '../../app/controllers/ColecaoController';
+import ColecaoController from '../../app/controllers/ColecaoController';                                     
 import { ColecaoRepositoryInterface } from '../../app/interfaces/repositories/ColecaoRepositoryInterface';
 import exp from 'constants';
 
-jest.mock('../../app/repositories/ColecaoRepository', () => {
+//Essas configurações e variáveis fornecem uma base para a realização de testes usando o Jest, o Express e o supertest
+
+jest.mock('../../app/repositories/ColecaoRepository', () => {           
   const colecao = {
     id: 1,
     titulo: 'titulo',
@@ -27,7 +31,9 @@ let app: Express;
 let server: any;
 let agent: SuperTest<Test>;
 
-beforeAll((done) => {
+ //Essas configurações permitem que os testes sejam realizados em um servidor Express configurado com os middlewares e rotas necessários para o controlador ColecaoController
+
+beforeAll((done) => {               
   app = express();
 
   app.use(cors());
@@ -40,17 +46,24 @@ beforeAll((done) => {
   });
 });
 
-afterAll((done) => {
+//O afterAll garante que, após a execução de todos os testes, o servidor Express seja encerrado corretamente, liberando os recursos e a porta que estava sendo usada
+
+afterAll((done) => {     
   server.close(done);
 });
 
-describe('ColecaoController', () => {
+//O describe é usado para agrupar os testes relacionados a um determinado componente, nesse caso, o ColecaoController
+
+describe('ColecaoController', () => {   
   const colecao = {
     id: 1,
     titulo: 'titulo',
     autor: 'autor',
     imagem: 'imagem',
   };
+
+  //Série de testes unitários para o ColecaoController
+
   it('deve retornar 422 ao enviar um título com mais de 255 caracteres', async () => {
     const response = (await request(app).get('/colecao').query({
       titulo: 'a'.repeat(256)

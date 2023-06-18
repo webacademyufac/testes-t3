@@ -5,6 +5,9 @@ import { faker } from '@faker-js/faker';
 import Quotation from '../../src/containers/quotation'; // implement quotation
 import { quotation } from '../factory/quotation';
 
+//Os testes unitários descritos nesse código têm o objetivo de validar se a tela de citações está sendo renderizada corretamente, se as citações estão sendo filtradas corretamente, se as operações de adição de nova citação estão funcionando corretamente e se a interface do usuário está respondendo adequadamente às ações do usuário
+//Garante que a funcionalidade de gerenciamento de citações atenda aos requisitos funcionais e de qualidade da aplicação.
+
 describe('/containers/quotation', () => {
   describe('Deve renderizar a tela de citação corretamente quando nenhuma citação estiver visível', () => {
     it('Deve renderizar o título da página de citações quando ela for renderizada', () => {
