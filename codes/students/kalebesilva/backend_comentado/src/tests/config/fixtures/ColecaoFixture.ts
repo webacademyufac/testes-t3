@@ -33,7 +33,7 @@ export const ColecaoInterfaceFixture: ColecaoInterface = { // obj sem id
   subtitulo: 'subtitulo',
 }
 
-export const CreatedColecaoFixture: ColecaoEntity = { // Obj fora de ordem
+export const CreatedColecaoFixture: ColecaoEntity = { // Obj para insert
   id: 1,
   titulo: 'titulo',
   subtitulo: 'subtitulo',
