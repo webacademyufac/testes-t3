@@ -2,11 +2,13 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { faker } from '@faker-js/faker';
-import Quotation from '../../src/containers/quotation'; // implement quotation
+import Quotation from '../../src/containers/quotation';
 import { quotation } from '../factory/quotation';
 
 describe('/containers/quotation', () => {
+  // Descreve um conjunto de testes para verificar a renderização da tela de citação quando nenhuma citação estiver visível.
   describe('Deve renderizar a tela de citação corretamente quando nenhuma citação estiver visível', () => {
+    // Testa se o título da página de citações é renderizado corretamente.
     it('Deve renderizar o título da página de citações quando ela for renderizada', () => {
       const fetch = jest.fn(() => Promise.resolve([]));
       render(<Quotation fetchData={fetch} />);
@@ -14,6 +16,7 @@ describe('/containers/quotation', () => {
       expect(screen.getByText('Citei')).toBeInTheDocument();
     });
 
+    // Testa se o subtítulo da página de citações é renderizado corretamente.
     it('Deve renderizar o subtítulo da página de citações quando ela for renderizada', () => {
       const fetch = jest.fn(() => Promise.resolve([]));
       render(<Quotation fetchData={fetch} />);
@@ -21,6 +24,7 @@ describe('/containers/quotation', () => {
       expect(screen.getByText('Torne-se um dev “by the book”')).toBeInTheDocument();
     });
 
+    // Testa se o botão de adicionar citação é renderizado corretamente.
     it('Deve renderizar o botão de adicionar citação quando a página for carregada', () => {
       const fetch = jest.fn(() => Promise.resolve([]));
       render(<Quotation fetchData={fetch} />);
@@ -29,7 +33,9 @@ describe('/containers/quotation', () => {
     });
   });
 
+  // Descreve um conjunto de testes para verificar a renderização da tela de citação quando uma função de mock de citações for injetada.
   describe('Deve renderizar a tela de citação corretamente quando uma função de mock de citações for injetada', () => {
+    // Testa se uma lista de citações passada via prop "fetchData" é renderizada corretamente.
     it('Deve renderizar uma lista de citações passada via prop "fetchData"', () => {
       const quotations = Array.from(Array(faker.number.int({ min: 1, max: 10 }))).map(() =>
         quotation({ collection: 'colecao' })
@@ -41,7 +47,9 @@ describe('/containers/quotation', () => {
     });
   });
 
+  // Descreve um conjunto de testes para verificar a renderização correta do modal de Adicionar citação.
   describe('Deve renderizar corretamente o modal de Adicionar citação', () => {
+    // Testa se o modal de adicionar citação é exibido corretamente quando o usuário clica no botão de "Adicionar citação".
     it('Deve exibir o modal de adicionar citação corretamente quando o usuário clicar no botão de "Adicionar citação"', async () => {
       const quotations = Array.from(Array(faker.number.int({ min: 1, max: 10 }))).map(() =>
         quotation({ collection: 'colecao' })

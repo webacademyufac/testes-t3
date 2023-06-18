@@ -6,22 +6,25 @@ import { OneCitacaoFixture, OneCitacaoOnlyFixture, manyCitacoesFixture, newCitac
 import { CitacaoRepositoryMock } from "../../config/mocks/CitacaoRepositoryMock";
 import { ColecaoRepositoryMock } from "../../config/mocks/ColecaoRepositoryMock";
 
-
+// Descreve os testes para o serviço CitacaoService
 describe('CitacaoService', () => {
   let citacaoService: CitacaoService;
   let citacaoRepositoryMock: CitacaoRepositoryInterface;
   let colecaoRepositoryMock: ColecaoRepositoryInterface;
 
   beforeEach(() => {
+    // Configuração antes de cada teste
     citacaoRepositoryMock = CitacaoRepositoryMock();
     colecaoRepositoryMock = ColecaoRepositoryMock();
     citacaoService = new CitacaoService(citacaoRepositoryMock, colecaoRepositoryMock);
   });
 
   afterEach(() => {
+    // Limpa os mocks após cada teste
     jest.resetAllMocks();
   });
 
+  // Testes para o método findAll
   describe('findAll', () => {
     it('should return all CitacaoEntity objects', async () => {
       const result = await citacaoService.findAll();
@@ -34,9 +37,10 @@ describe('CitacaoService', () => {
       const titulo = 'Citacao';
       const result = await citacaoService.findAll(titulo);
       expect(citacaoRepositoryMock.findAll).toHaveBeenCalledWith(titulo);
-    })
+    });
   });
 
+  // Testes para o método findById
   describe('findById', () => {
     it('should return the CitacaoEntity object with the specified ID', async () => {
       const result = await citacaoService.findById(1);
@@ -46,6 +50,7 @@ describe('CitacaoService', () => {
     });
 
     it('should throw an error if the CitacaoEntity with the specified ID is not found', async () => {
+      // Simula a função findById do repositório retornando null
       jest.spyOn(citacaoRepositoryMock, 'findById').mockResolvedValue(null);
 
       await expect(citacaoService.findById(1)).rejects.toThrow(AppError);
@@ -53,6 +58,7 @@ describe('CitacaoService', () => {
     });
   });
 
+  // Testes para o método create
   describe('create', () => {
     it('should create a new CitacaoEntity object', async () => {
       const result = await citacaoService.create(newCitacaoFixture);
@@ -62,6 +68,7 @@ describe('CitacaoService', () => {
     });
   });
 
+  // Testes para o método update
   describe('update', () => {
     it('should update the CitacaoEntity object with the specified ID', async () => {
       const result = await citacaoService.update(1, { titulo: 'Updated Citacao', id_colecao: 2 });
