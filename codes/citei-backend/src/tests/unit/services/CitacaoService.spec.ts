@@ -30,12 +30,21 @@ describe('CitacaoService', () => {
       expect(citacaoRepositoryMock.findAll).toHaveBeenCalled();
     });
 
+   
+
     it('should send params to CitacaoRepository', async () => {
       const titulo = 'Citacao';
       const result = await citacaoService.findAll(titulo);
       expect(citacaoRepositoryMock.findAll).toHaveBeenCalledWith(titulo);
     })
   });
+
+   //*Testa o método findAll da classe CitacaoService.Podemos observar dois testes:
+    //O primeiro teste verifica se o método findAll retorna todos os objetos CitacaoEntity. 
+    //Ele verifica se o resultado retornado é igual ao valor esperado manyCitacoesFixture e se a 
+    //função findAll de citacaoRepositoryMock foi chamada.
+    //O segundo teste verifica se o método findAll envia os parâmetros corretos para citacaoRepositoryMock. 
+    //Ele verifica se a função findAll de citacaoRepositoryMock foi chamada com o parâmetro titulo.
 
   describe('findById', () => {
     it('should return the CitacaoEntity object with the specified ID', async () => {
@@ -53,6 +62,14 @@ describe('CitacaoService', () => {
     });
   });
 
+  //*Testa o método findById da classe CitacaoService. Existem dois testes dentro desse bloco.
+//O primeiro teste verifica se o método findById retorna o objeto CitacaoEntity com o ID especificado. 
+//Ele verifica se o resultado retornado é igual ao valor esperado OneCitacaoFixture e se a função findById 
+//de citacaoRepositoryMock foi chamada com o parâmetro 1.
+//O segundo teste verifica se o método findById lança um erro se o objeto CitacaoEntity com o ID especificado 
+//não for encontrado. Ele simula a função findById de citacaoRepositoryMock para retornar null e verifica se o 
+//erro AppError é lançado.
+
   describe('create', () => {
     it('should create a new CitacaoEntity object', async () => {
       const result = await citacaoService.create(newCitacaoFixture);
@@ -61,6 +78,11 @@ describe('CitacaoService', () => {
       expect(citacaoRepositoryMock.create).toHaveBeenCalledWith(newCitacaoFixture);
     });
   });
+
+  //*Testa o método create da classe CitacaoService. Há um único teste dentro desse bloco.
+//O teste verifica se o método create cria um novo objeto CitacaoEntity. Ele verifica se o resultado retornado 
+//é igual ao valor esperado OneCitacaoFixture e se a função create de citacaoRepositoryMock foi chamada com o 
+//parâmetro newCitacaoFixture.
 
   describe('update', () => {
     it('should update the CitacaoEntity object with the specified ID', async () => {
@@ -87,6 +109,16 @@ describe('CitacaoService', () => {
     });
   });
 
+//*Testa o método update da classe CitacaoService. Existem três testes dentro desse bloco.
+//O primeiro teste verifica se o método update atualiza o objeto CitacaoEntity com o ID e os dados especificados. 
+//Ele verifica se o resultado retornado é igual ao valor esperado OneCitacaoFixture, se as funções getCitacaoOnly 
+//de citacaoRepositoryMock e getColecaoOnly de colecaoRepositoryMock foram chamadas com os parâmetros corretos e 
+//se a função update de citacaoRepositoryMock foi chamada com os parâmetros corretos.
+//O segundo teste verifica se o método update lança um erro se o objeto ColecaoEntity com o ID especificado não 
+//for encontrado. Ele simula a função getColecaoOnly de colecaoRepositoryMock para retornar null e verifica se o 
+//erro AppError é lançado.
+//O terceiro teste verifica se o método update lança um erro se o objeto CitacaoEntity com o ID especificado não 
+//for encontrado. Ele simula a função getCitacaoOnly de citacaoRepositoryMock para retornar null e verifica se o erro AppError é lançado.
   describe('delete', () => {
     it('should delete the CitacaoEntity object with the specified ID', async () => {
       await citacaoService.delete(1);
@@ -102,3 +134,11 @@ describe('CitacaoService', () => {
     });
   });
 });
+
+//Testa o método delete da classe CitacaoService. Existem dois testes dentro desse bloco.
+//O primeiro teste verifica se o método delete exclui o objeto CitacaoEntity com o ID especificado. 
+//Ele verifica se a função getCitacaoOnly de citacaoRepositoryMock foi chamada com o parâmetro 1 e se a 
+//função delete de citacaoRepositoryMock foi chamada com o parâmetro 1.
+//O segundo teste verifica se o método delete lança um erro se o objeto CitacaoEntity com o ID especificado 
+//não for encontrado. Ele simula a função getCitacaoOnly de citacaoRepositoryMock para retornar null e verifica 
+//se o erro AppError é lançado.

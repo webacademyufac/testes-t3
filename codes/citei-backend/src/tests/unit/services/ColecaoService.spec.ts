@@ -4,6 +4,7 @@ import ColecaoService from "../../../app/services/ColecaoService";
 import { ColecaoInterfaceFixture, CreatedColecaoFixture, ManyColecaoFixture, OneColecaoFixture } from "../../config/fixtures/ColecaoFixture";
 import { ColecaoRepositoryMock } from "../../config/mocks/ColecaoRepositoryMock";
 
+//* O teste utiliza o framework de testes Jest para definir casos de teste para cada método da classe ColecaoService.
 describe('ColecaoService', () => {
   let colecaoService: ColecaoService;
   let colecaoRepositoryMock: ColecaoRepositoryInterface;
@@ -83,3 +84,10 @@ describe('ColecaoService', () => {
     });
   });
 });
+
+//*Dentro de cada describe, temos um conjunto de it que define um caso de teste específico. 
+//Cada caso de teste inclui uma ou mais asserções que verificam o comportamento esperado do método 
+//sendo testado.
+//*os casos de teste parecem abordar diferentes cenários para os métodos findAll, findById, create, 
+//update e delete da classe ColecaoService. Os testes verificam se os resultados retornados estão corretos 
+//e se os métodos da interface ColecaoRepositoryInterface foram chamados corretamente.

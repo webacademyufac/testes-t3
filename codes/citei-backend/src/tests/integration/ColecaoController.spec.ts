@@ -23,6 +23,11 @@ jest.mock('../../app/repositories/ColecaoRepository', () => {
   } as jest.Mocked<ColecaoRepositoryInterface>;
 });
 
+//*Este bloco de código está simulando a implementação do repositório ColecaoRepository por meio de 
+//uma função de simulação chamada de jest.mock. Ele substitui as funções do repositório por funções fictícias 
+//que retornam valores de teste pré-definidos. Isso é feito para testar o controlador ColecaoController 
+//isoladamente, sem depender do repositório real.
+
 let app: Express;
 let server: any;
 let agent: SuperTest<Test>;
@@ -40,9 +45,16 @@ beforeAll((done) => {
   });
 });
 
+//*Neste trecho, o servidor Express é inicializado antes de todos os testes (beforeAll). 
+//Ele cria uma instância do aplicativo Express, configura o middleware cors e express.json(), 
+//e registra as rotas do ColecaoController. Em seguida, o servidor é iniciado e um agente de 
+//teste é criado usando request.agent.
+
 afterAll((done) => {
   server.close(done);
 });
+
+//*Este trecho fecha o servidor Express após todos os testes terem sido executados (afterAll). 
 
 describe('ColecaoController', () => {
   const colecao = {
@@ -125,3 +137,8 @@ describe('ColecaoController', () => {
     expect(response.body).toEqual({ message: 'Colecao removida com sucesso!' });
   });
 });
+
+//*Essa é a parte principal dos testes. O código usa o objeto describe para agrupar os testes 
+//relacionados ao ColecaoController. Cada teste é definido por uma função it. Os testes fazem 
+//solicitações HTTP para várias rotas do controlador ColecaoController e verificam as respostas 
+//esperadas usando asserções.

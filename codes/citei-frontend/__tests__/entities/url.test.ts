@@ -37,3 +37,7 @@ describe('entities/url', () => {
     })
   });
 });
+
+//Este conjunto de testes verifica se a classe ImageURL valida corretamente as URLs fornecidas e 
+//se retorna os valores esperados para as propriedades isValid e url. Os casos de teste cobrem cenários 
+//de URLs válidas, URLs inválidas, string vazia e URL estática da própria aplicação.
