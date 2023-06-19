@@ -4,9 +4,8 @@ import { ICollection } from '../../src/interfaces/collection';
 import { ImageURL } from '../../src/entities/url';
 
 describe('entities/collection', () => {
-  describe('Deve retornar false quando uma coleção for instanciada com algum valor inválido', () => {
+  describe('Deve retornar false quando uma coleção for instanciada com algum valor invalido', () => {
     it('Deve retornar false quando uma coleção for criada com o Título vazio', () => {
-      // Configurando os valores para a criação de uma coleção com título vazio
       const arrange: ICollection = {
         title: '',
         author: faker.person.fullName(),
@@ -14,7 +13,6 @@ describe('entities/collection', () => {
         subtitle: faker.word.words(7),
       };
 
-      // Instanciando uma coleção com os valores configurados
       const collection = new Collection(
         arrange.title,
         arrange.author,
@@ -22,12 +20,10 @@ describe('entities/collection', () => {
         arrange.image
       );
 
-      // Verificando se a coleção é válida (deve retornar false)
       expect(collection.isValid).toBe(false);
     });
 
     it('Deve retornar false quando uma coleção for criada com o subtítulo vazio', () => {
-      // Configurando os valores para a criação de uma coleção com subtítulo vazio
       const arrange: ICollection = {
         title: faker.word.words(2),
         author: faker.person.fullName(),
@@ -35,7 +31,6 @@ describe('entities/collection', () => {
         subtitle: '',
       };
 
-      // Instanciando uma coleção com os valores configurados
       const collection = new Collection(
         arrange.title,
         arrange.author,
@@ -43,12 +38,10 @@ describe('entities/collection', () => {
         arrange.image
       );
 
-      // Verificando se a coleção é válida (deve retornar false)
       expect(collection.isValid).toBe(false);
     });
 
-    it('Deve retornar false quando uma coleção é criada com uma ImageURL inválida', () => {
-      // Configurando os valores para a criação de uma coleção com uma ImageURL inválida
+    it('Deve retornar false quando uma coleção é criada com uma ImageURL invalida', () => {
       const arrange: ICollection = {
         title: faker.word.words(2),
         author: faker.person.fullName(),
@@ -56,7 +49,6 @@ describe('entities/collection', () => {
         subtitle: faker.word.words(7),
       };
 
-      // Instanciando uma coleção com os valores configurados
       const collection = new Collection(
         arrange.title,
         arrange.author,
@@ -64,13 +56,11 @@ describe('entities/collection', () => {
         arrange.image
       );
 
-      // Verificando se a coleção é válida (deve retornar false)
       expect(collection.isValid).toBe(false);
     });
   });
 
   it('Deve retornar o valor true na propriedade isValid quando uma coleção for criada com todos os valores válidos', () => {
-    // Configurando os valores para a criação de uma coleção com todos os valores válidos
     const arrange: ICollection = {
       title: faker.word.words(2),
       subtitle: faker.word.words(7),
@@ -78,7 +68,6 @@ describe('entities/collection', () => {
       image: new ImageURL(faker.image.url()),
     };
 
-    // Instanciando uma coleção com os valores configurados
     const collection = new Collection(
       arrange.title,
       arrange.author,
@@ -86,7 +75,6 @@ describe('entities/collection', () => {
       arrange.image
     );
 
-    // Verificando se a coleção é válida (deve retornar true)
     expect(collection.isValid).toBe(true);
   });
 });

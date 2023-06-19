@@ -19,14 +19,12 @@ describe('ColecaoService', () => {
 
   describe('findAll', () => {
     it('should return all ColecaoEntity objects', async () => {
-      // Verifica se o serviço retorna todos os objetos de ColecaoEntity
       const result = await colecaoService.findAll();
       expect(result).toEqual(ManyColecaoFixture);
       expect(colecaoRepositoryMock.findAll).toHaveBeenCalled();
     });
 
     it('should call the repository with the specified title', async () => {
-      // Verifica se o serviço chama o repositório com o título especificado
       await colecaoService.findAll('titulo');
       expect(colecaoRepositoryMock.findAll).toHaveBeenCalledWith('titulo');
     });
@@ -34,14 +32,12 @@ describe('ColecaoService', () => {
 
   describe('findById', () => {
     it('should return the ColecaoEntity object with the specified ID', async () => {
-      // Verifica se o serviço retorna o objeto ColecaoEntity com o ID especificado
       const result = await colecaoService.findById(1);
       expect(result).toEqual(OneColecaoFixture);
       expect(colecaoRepositoryMock.findById).toHaveBeenCalledWith(1);
     });
 
     it('should throw an error if the ColecaoEntity with the specified ID is not found', async () => {
-      // Verifica se o serviço lança um erro se o ColecaoEntity com o ID especificado não for encontrado
       jest.spyOn(colecaoRepositoryMock, 'findById').mockResolvedValue(null);
 
       await expect(colecaoService.findById(1)).rejects.toThrow(AppError);
@@ -51,7 +47,6 @@ describe('ColecaoService', () => {
 
   describe('create', () => {
     it('should create a new ColecaoEntity object', async () => {
-      // Verifica se o serviço cria um novo objeto ColecaoEntity
       const result = await colecaoService.create(ColecaoInterfaceFixture);
       expect(result).toEqual(CreatedColecaoFixture);
       expect(colecaoRepositoryMock.create).toHaveBeenCalledWith({ ...OneColecaoFixture, ...ColecaoInterfaceFixture, id: undefined });
@@ -60,7 +55,6 @@ describe('ColecaoService', () => {
 
   describe('update', () => {
     it('should update the ColecaoEntity object with the specified ID', async () => {
-      // Verifica se o serviço atualiza o objeto ColecaoEntity com o ID especificado
       const result = await colecaoService.update(1, ColecaoInterfaceFixture);
 
       expect(result).toEqual(OneColecaoFixture);
@@ -69,4 +63,23 @@ describe('ColecaoService', () => {
     });
 
     it('should throw an error if the ColecaoEntity with the specified ID is not found', async () => {
-      // Verifica se o serviço lança um erro se o ColecaoEntity com o
+      jest.spyOn(colecaoRepositoryMock, 'getColecaoOnly').mockResolvedValue(null);
+      await expect(colecaoService.update(1, ColecaoInterfaceFixture)).rejects.toThrow(AppError);
+      expect(colecaoRepositoryMock.getColecaoOnly).toHaveBeenCalledWith(1);
+    });
+  });
+
+  describe('delete', () => {
+    it('should delete the ColecaoEntity object with the specified ID', async () => {
+      await colecaoService.delete(1);
+      expect(colecaoRepositoryMock.getColecaoOnly).toHaveBeenCalledWith(1);
+      expect(colecaoRepositoryMock.delete).toHaveBeenCalledWith(1);
+    });
+
+    it('should throw an error if the ColecaoEntity with the specified ID is not found', async () => {
+      jest.spyOn(colecaoRepositoryMock, 'getColecaoOnly').mockResolvedValue(null);
+      await expect(colecaoService.delete(1)).rejects.toThrow(AppError);
+      expect(colecaoRepositoryMock.getColecaoOnly).toHaveBeenCalledWith(1);
+    });
+  });
+});

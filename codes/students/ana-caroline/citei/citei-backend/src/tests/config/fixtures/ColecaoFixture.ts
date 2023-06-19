@@ -1,8 +1,6 @@
 import ColecaoEntity from "../../../app/entities/ColecaoEntity";
 import ColecaoInterface from "../../../app/interfaces/entities/ColecaoInterface";
-//fixture é um conjunto de dados pré-definidos que é usado para fornecer um ambiente
-// consistente e conhecido para testes de software e outros fins relacionados
-// Fixture contendo uma única coleção
+
 export const OneColecaoFixture: ColecaoEntity = {
   id: 1,
   titulo: 'titulo',
@@ -11,7 +9,6 @@ export const OneColecaoFixture: ColecaoEntity = {
   imagem: 'imagem',
 }
 
-// Fixture contendo uma lista de coleções
 export const ManyColecaoFixture: ColecaoEntity[] = [
   {
     id: 1,
@@ -29,7 +26,6 @@ export const ManyColecaoFixture: ColecaoEntity[] = [
   },
 ]
 
-// Fixture contendo uma interface de coleção
 export const ColecaoInterfaceFixture: ColecaoInterface = {
   titulo: 'titulo',
   autor: 'autor',
@@ -37,7 +33,6 @@ export const ColecaoInterfaceFixture: ColecaoInterface = {
   subtitulo: 'subtitulo',
 }
 
-// Fixture contendo uma coleção criada
 export const CreatedColecaoFixture: ColecaoEntity = {
   id: 1,
   titulo: 'titulo',
