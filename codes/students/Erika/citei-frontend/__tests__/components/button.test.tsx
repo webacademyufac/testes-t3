@@ -4,49 +4,49 @@ import userEvent from '@testing-library/user-event';
 import { faker } from '@faker-js/faker';
 import Button from '../../src/components/button';
 
-// Descreve o conjunto de testes para o componente Button
 describe('<Button />', () => {
-
-  // Teste: Verifica se o botão renderizado coincide com um snapshot salvo anteriormente
   it('Deve ser igual ao snapshot salvo anteriormente quando o botão for renderizado', () => {
+    // Gera três palavras falsas usando a biblioteca faker-js/faker
     const words = faker.word.words(3);
-    // Gera palavras aleatórias para o título do botão usando a biblioteca faker
+    // Renderiza o componente Button com o título gerado
     render(<Button title={words} />);
-    
-    // Obtém o botão pelo seu papel (role) como "button"
+
+    // Obtém o botão com base no atributo role "button"
     const button = screen.getByRole('button');
-    // Compara o botão com o snapshot salvo anteriormente
+
+    // Verifica se o botão é igual ao snapshot anteriormente salvo
     expect(button).toMatchSnapshot();
   });
-// Descreve o conjunto de testes para a exibição correta do botão
+
   describe('Deve exibir o botão corretamente quando ele for renderizado', () => {
-  
-    // Teste: Verifica se o título do botão é exibido corretamente quando é passado via prop "Title"
     it('Deve exibir o título do botão quando o valor for passado via prop "Title"', () => {
-      // Gera palavras aleatórias para o título do botão usando a biblioteca faker
+      // Gera três palavras falsas usando a biblioteca faker-js/faker
       const words = faker.word.words(3);
       // Renderiza o componente Button com o título gerado
       render(<Button title={words} />);
-      
-      // Obtém o botão pelo seu texto
+
+      // Obtém o elemento contendo o texto igual ao título gerado
       const button = screen.getByText(words);
-      // Verifica se o botão com o título está presente no documento (document)
+
+      // Verifica se o botão está presente no documento
       expect(button).toBeInTheDocument();
     });
 
-    // Teste: Verifica se a função "onClick" é chamada quando o botão é clicado
     it('Deve chamar a função de "onClick" quando o botão for clicado', async () => {
-      // Cria uma função mock para simular o comportamento da função "onClick"
+      // Cria uma função simulada usando o jest.fn()
       const onClick = jest.fn();
-      // Renderiza o componente Button com a função "onClick" mockada
+      // Renderiza o componente Button com a função de "onClick" simulada
       render(<Button onClick={onClick} />);
-      
-      // Obtém o botão pelo seu papel (role) como "button"
+
+      // Obtém o botão com base no atributo role "button"
       const button = screen.getByRole('button');
-      // Simula um clique no botão usando a biblioteca userEvent
+      // Simula um clique no botão usando o userEvent.click()
       await userEvent.click(button);
-      // Verifica se a função "onClick" foi chamada uma vez
+
+      // Verifica se a função de "onClick" foi chamada uma vez
       expect(onClick).toBeCalledTimes(1);
     });
   });
 });
+
+
