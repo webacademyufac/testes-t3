@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColecaoController deve retornar um código de status 422 ao deixar de enviar dados obrigatorios 1`] = `
+{
+  "errors": [
+    {
+      "location": "body",
+      "msg": "Invalid value",
+      "path": "titulo",
+      "type": "field",
+    },
+    {
+      "location": "body",
+      "msg": "Invalid value",
+      "path": "titulo",
+      "type": "field",
+    },
+    {
+      "location": "body",
+      "msg": "Invalid value",
+      "path": "autor",
+      "type": "field",
+    },
+    {
+      "location": "body",
+      "msg": "Invalid value",
+      "path": "autor",
+      "type": "field",
+    },
+  ],
+}
+`;
+
+exports[`ColecaoController deve retornar um código de status 422 ao deixar de enviar o titulo 1`] = `
+{
+  "errors": [
+    {
+      "location": "body",
+      "msg": "Invalid value",
+      "path": "autor",
+      "type": "field",
+    },
+    {
+      "location": "body",
+      "msg": "Invalid value",
+      "path": "autor",
+      "type": "field",
+    },
+  ],
+}
+`;
