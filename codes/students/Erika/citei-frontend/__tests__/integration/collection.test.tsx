@@ -6,42 +6,59 @@ import Collection from '../../src/containers/collection';
 import { collection } from '../../__tests__/factory/collection';
 import { collectionService as collectionServiceFactory } from '../../__tests__/factory/collectionService';
 
+// Antes de cada teste, substituímos a função window.alert por uma função vazia
 beforeAll(() => {
-  jest.spyOn(window, 'alert').mockImplementation(() => { });
+  jest.spyOn(window, 'alert').mockImplementation(() => {});
 });
 
 describe('/containers/collection', () => {
+  // Descrição dos testes para quando nenhuma coleção for injetada
   describe('Deve exibir a tela de coleções corretamente quando nenhuma coleção for injetada', () => {
     it('Deve exibir o título da página quando ela for carregada', async () => {
+      // Criação do serviço de coleção com uma função mock para obter coleções válidas
       const collectionService = collectionServiceFactory({
         getValidCollections: jest.fn().mockResolvedValue([]),
       });
+      // Renderização do componente Collection com o serviço de coleção mockado
       await act(async () => render(<Collection collectionService={collectionService} />));
 
+      // Verificação se o título da página está presente no documento
       expect(screen.getByRole('heading', { name: 'Citei' })).toBeInTheDocument();
     });
 
+    // Teste para verificar se uma lista vazia de coleções é renderizada
     it('Deve renderizar uma lista de coleções vazia quando nenhuma coleção for injetada', async () => {
+      // Criação do serviço de coleção com uma função mock para obter coleções válidas
       const collectionService = collectionServiceFactory({
         getValidCollections: jest.fn().mockResolvedValue([]),
       });
+      // Renderização do componente Collection com o serviço de coleção mockado
       await act(async () => render(<Collection collectionService={collectionService} />));
 
+      // Verificação se não há elementos de lista presentes no documento
       expect(screen.queryByRole('list')).toBeEmptyDOMElement();
     });
 
+    // Teste para verificar se o botão "Adicionar coleção" é exibido
     it('Deve exibir o botão de "Adicionar coleção"', async () => {
+      // Criação do serviço de coleção com uma função mock para obter coleções válidas
       const collectionService = collectionServiceFactory({
         getValidCollections: jest.fn().mockResolvedValue([]),
       });
+      // Renderização do componente Collection com o serviço de coleção mockado
       await act(async () => render(<Collection collectionService={collectionService} />));
 
+      // Verificação se o botão "Adicionar coleção" está presente no documento
       expect(screen.getByText('Adicionar coleção')).toBeInTheDocument();
     });
 
+    // Teste para verificar se o subtítulo da página é exibido corretamente
     it('Deve exibir o subtítulo da página quando ela for carregada', async () => {
+      // Criação do serviço de coleção com uma função mock para obter coleções válidas
       const collectionService = collectionServiceFactory({
         getValidCollections: jest.fn().mockResolvedValue([]),
+      });
+      // Renderização do componente Collection com o serviço de coleção mockado
       });
       await act(async () => render(<Collection collectionService={collectionService} />));
 
@@ -241,4 +258,4 @@ describe('/containers/collection', () => {
       expect(screen.queryByText(second.title)).toBe(null);
     });
   });
-});
+
